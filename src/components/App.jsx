@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import CardGrid from "./CardGrid";
 import GameHeader from "./GameHeader";
 
-// TODO : Generate the random list of pokemon only the first time the app is loaded
-// Save this into an object to be passed to other components
+// TODO: Add the onClick logic for each card
+// TODO: Add the styling for the app
 
 function App() {
   const [data, setData] = useState([]);
