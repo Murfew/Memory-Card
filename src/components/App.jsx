@@ -71,10 +71,11 @@ function App() {
       setData(resetData);
 
     } else {
-      // Update high score
-      if (score > highScore) {setHighScore(score)};
       // Increment score
       setScore(score + 1);
+
+      // Update high score
+      if (score > highScore) {setHighScore(score)};
 
       // Set clicked
       const updatedData = data.map((pokemon, i) => {
