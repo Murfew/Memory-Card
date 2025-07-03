@@ -26,7 +26,13 @@ function App() {
             return response.json();
           })
         );
-        setData(results);
+
+        // Add clicked field
+        const resultsWithClicked = results.map(pokemon => ({
+          ...pokemon, clicked: false,
+        }));
+
+        setData(resultsWithClicked);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -35,11 +41,48 @@ function App() {
     fetchAll();
   }, []);
 
+  // Shuffle array using Fisher-Yates shuffle
+  function shuffleArray(array) {
+    let copy = JSON.parse(JSON.stringify(array))
+    let currentIndex = copy.length, randomIndex;
+
+    // While there are elements to shuffle
+    while (currentIndex !== 0) {
+      // Pick element
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // Swap with current element
+      [copy[currentIndex], copy[randomIndex]] = [copy[randomIndex], copy[currentIndex]];
+
+    }
+
+    return copy
+  }
+
+
+  function handleCardClick(index) {
+    const card = data.at(index);
+    if (card.clicked) {
+      // Reset score
+      setScore(0);
+    } else {
+      // Update high score
+      if (score > highScore) {setHighScore(score)};
+      // Increment score
+      setScore(score + 1);
+
+    }
+
+    // Shuffle cards
+    const shuffled = shuffleArray(data);
+    setData(shuffled)
+  }
 
   return (
     <div className="p-4">
       <GameHeader score={score} highScore={highScore}/>
-      <CardGrid pkmn={data}/>
+      <CardGrid pkmn={data} handleCardClick={handleCardClick}/>
     </div>
   )
 }
