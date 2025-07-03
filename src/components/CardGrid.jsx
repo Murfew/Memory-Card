@@ -7,7 +7,7 @@ function CardGrid({pkmn, handleCardClick}) {
         <Card key={index}
         imageURL={item.sprites.front_default}
         pkmnName={item.forms[0].name}
-        onClick={handleCardClick(index)}
+        onClick={() => handleCardClick(index)}
         />
       ))}
     </div>

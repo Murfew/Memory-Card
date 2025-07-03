@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import CardGrid from "./CardGrid";
 import GameHeader from "./GameHeader";
 
-// TODO: Add the onClick logic for each card
 // TODO: Add the styling for the app
 
 function App() {
@@ -66,17 +65,26 @@ function App() {
     if (card.clicked) {
       // Reset score
       setScore(0);
+
+      // Reset all cards
+      const resetData = data.map(pokemon => ({...pokemon, clicked: false}))
+      setData(resetData);
+
     } else {
       // Update high score
       if (score > highScore) {setHighScore(score)};
       // Increment score
       setScore(score + 1);
 
+      // Set clicked
+      const updatedData = data.map((pokemon, i) => {
+        i === index ? {...pokemon, clicked: true} : pokemon
+      });
+      setData(updatedData);
     }
 
     // Shuffle cards
-    const shuffled = shuffleArray(data);
-    setData(shuffled)
+    setData(shuffleArray(data))
   }
 
   return (
