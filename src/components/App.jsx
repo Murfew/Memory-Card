@@ -63,29 +63,30 @@ function App() {
   function handleCardClick(index) {
     const card = data.at(index);
     if (card.clicked) {
+      // Update high score
+      if (score > highScore) {setHighScore(score)};
+
       // Reset score
       setScore(0);
 
       // Reset all cards
       const resetData = data.map(pokemon => ({...pokemon, clicked: false}))
-      setData(resetData);
+
+      // Update and shuffle
+      setData(shuffleArray(resetData));
 
     } else {
       // Increment score
       setScore(score + 1);
 
-      // Update high score
-      if (score > highScore) {setHighScore(score)};
-
       // Set clicked
-      const updatedData = data.map((pokemon, i) => {
+      const updatedData = data.map((pokemon, i) =>
         i === index ? {...pokemon, clicked: true} : pokemon
-      });
-      setData(updatedData);
-    }
+      );
 
-    // Shuffle cards
-    setData(shuffleArray(data))
+      // Update and shuffle
+      setData(shuffleArray(updatedData));
+    }
   }
 
   return (
