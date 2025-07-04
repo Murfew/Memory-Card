@@ -5,6 +5,7 @@ import GameHeader from "./GameHeader";
 // TODO: Fix overlap of cards on some screen sizes
 // TODO: Add green/blue flare when correct choice
 // TODO: Add red flare when incorrect choice
+// TODO: end on max score, victory confetti
 
 function App() {
   const [data, setData] = useState([]);
