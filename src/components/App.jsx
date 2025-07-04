@@ -90,7 +90,7 @@ function App() {
   }
 
   return (
-    <div className="p-4 bg-[#1E1E2F] text-white">
+    <div className="bg-[#1E1E2F] text-white p-6">
       <GameHeader score={score} highScore={highScore}/>
       <CardGrid pkmn={data} handleCardClick={handleCardClick}/>
     </div>
