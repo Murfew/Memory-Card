@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import CardGrid from "./CardGrid";
 import GameHeader from "./GameHeader";
 
-// TODO: Add the styling for the app
+// TODO: Fix overlap of cards on some screen sizes
+// TODO: Add green/blue flare when correct choice
+// TODO: Add red flare when incorrect choice
 
 function App() {
   const [data, setData] = useState([]);
