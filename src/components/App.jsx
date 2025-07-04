@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     // Generate a unique set of 16 random IDs
     const uniqueIds = new Set();
-    while (uniqueIds.size < 16) {
+    while (uniqueIds.size < 15) {
       uniqueIds.add(Math.floor(Math.random() * 1025 + 1));
     }
 
