@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import CardGrid from "./CardGrid";
 import GameHeader from "./GameHeader";
 
-// TODO: Fix overlap of cards on some screen sizes
 // TODO: Add green/blue flare when correct choice
 // TODO: Add red flare when incorrect choice
-// TODO: end on max score, victory confetti
 
 function App() {
   const [data, setData] = useState([]);
@@ -93,7 +91,7 @@ function App() {
   }
 
   return (
-    <div className="bg-[#1E1E2F] text-white p-6">
+    <div className="bg-[#1E1E2F] text-white p-6 min-h-screen h-fit">
       <GameHeader score={score} highScore={highScore}/>
       <CardGrid pkmn={data} handleCardClick={handleCardClick}/>
     </div>
