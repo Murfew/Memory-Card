@@ -1,4 +1,4 @@
-function Card({imageURL, pkmnName, onClick}) {
+function Card({ imageURL, pkmnName, onClick, wrong}) {
 
   function capitalize(name) {
     let matches = [...name.matchAll("-[A-Za-z]+")];
@@ -23,9 +23,20 @@ function Card({imageURL, pkmnName, onClick}) {
   }
 
   return (
-    <div className ="bg-[#2A2A40] border border-[#3C3C5A] rounded-2xl shadow-lg p-6 max-w-96 w-full text-white hover:scale-105 transition-transform duration-200 flex flex-col justify-between" onClick={onClick}>
-      <img className="m-auto" src={imageURL} alt={pkmnName} />
-      <p className="text-xl font-bold mb-2 text-[#FFD700] text-center">{capitalize(pkmnName)}</p>
+     <div
+      onClick={onClick}
+      className="relative w-full transition-transform hover:scale-105"
+    >
+      {wrong && (
+        <div className="absolute inset-0 rounded-2xl bg-red-500 opacity-30 blur-md animate-ping z-0 pointer-events-none"></div>
+      )}
+
+      <div className="relative z-10 bg-[#2A2A40] border border-[#3C3C5A] rounded-2xl shadow-lg p-6 text-white flex flex-col justify-between">
+        <img className="m-auto" src={imageURL} alt={pkmnName} />
+        <p className="text-xl font-bold mb-2 text-[#FFD700] text-center">
+          {capitalize(pkmnName)}
+        </p>
+      </div>
     </div>
   )
 }

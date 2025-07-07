@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import CardGrid from "./CardGrid";
 import GameHeader from "./GameHeader";
 
-// TODO: Add green/blue flare when correct choice
-// TODO: Add red flare when incorrect choice
 
 function App() {
   const [data, setData] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [wrongCardId, setWrongCardId] = useState(null);
 
   useEffect(() => {
     // Generate a unique set of 16 random IDs
@@ -28,11 +27,11 @@ function App() {
         );
 
         // Add clicked field
-        const resultsWithClicked = results.map(pokemon => ({
+        const modifiedResults = results.map(pokemon => ({
           ...pokemon, clicked: false,
         }));
 
-        setData(resultsWithClicked);
+        setData(modifiedResults);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -67,6 +66,12 @@ function App() {
       // Update high score
       if (score > highScore) {setHighScore(score)};
 
+      // Trigger wrong answer effect
+      setWrongCardId(index);
+
+      // Clear effect after 500ms
+      setTimeout(() => setWrongCardId(null), 500)
+
       // Reset score
       setScore(0);
 
@@ -93,7 +98,7 @@ function App() {
   return (
     <div className="bg-[#1E1E2F] text-white p-6 min-h-screen h-fit">
       <GameHeader score={score} highScore={highScore}/>
-      <CardGrid pkmn={data} handleCardClick={handleCardClick}/>
+      <CardGrid pkmn={data} handleCardClick={handleCardClick} wrongCardId={wrongCardId} />
     </div>
   )
 }
